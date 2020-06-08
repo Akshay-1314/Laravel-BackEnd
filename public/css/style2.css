@@ -1,0 +1,20 @@
+body{
+	background-color:#161748;
+}
+#logo {
+	position:relative;
+        left:20px;
+        width:100px;
+}
+#top{
+	margin-top:100px;
+}
+.size{
+	width:100px;
+}
+#img3,#img4{
+	width:50px;
+}
+#footer{
+background: #f6f6f9;
+}

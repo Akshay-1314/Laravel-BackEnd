@@ -1,0 +1,20 @@
+body{
+	background-color:#161748;
+}
+#logo {
+	position:relative;
+        left:20px;
+        width:100px;
+}
+.sample{
+	text-align:center;
+}
+#img3,#img4{
+		width:50px;
+}
+#footer{
+	background: #f6f6f9;
+}
+
+
+
