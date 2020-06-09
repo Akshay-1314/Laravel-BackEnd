@@ -14,11 +14,9 @@ class UserController1 extends Controller
 {
     public function get_booking(Request $req){
         if($req->validate([
-            "sellist1[]"=>"required",
             "file"=>"required|image|mimes:jpeg,png,jpg,gif|max:2048",
             "sellist2"=>"required"],
-            ['sellist1[].required'=>"Please select atleast one test",
-            'file.required'=>"Please choose a file",
+            ['file.required'=>"Please choose a file",
             'sellist2.required'=>"Please select a lab"]))
         {
             $new = new diagnosis;
@@ -80,7 +78,7 @@ class UserController1 extends Controller
                 $message->to($re['email'])->subject('Booking Confirmed');
                 $message->from('akshaykumar200042@gmail.com','Practo');
             });
-            return redirect('landing_page')->with('message','Success!');
+            return redirect('home')->with('message','Success!');
         }
     }
     
