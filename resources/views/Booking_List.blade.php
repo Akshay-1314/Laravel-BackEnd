@@ -69,6 +69,7 @@
               <td>{{$value->time_slot}}</td>
               <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" id="tooltip" data-tippy-content="Delete"></i></a></td>
             </tr>
+            }
           @endforeach
             </tbody>
         </table>
