@@ -34,7 +34,7 @@
       </header>
       <section class="container-fluid bg-warning">
         <div>
-          <form action="submit" method="POST" enctype="multipart/form-data">
+          <form action="submit" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
             @csrf
             <div class="form-group bg-secondary text-white mt-4">
               <label for="sel1">Select a Test/s (hold ctrl to select more than one):</label>
@@ -46,9 +46,7 @@
                 <option value="cbp">CBP</option>
                 <option value="" selected>None</option>
               </select>
-              @error('sellist1[]')
-              <div class="text-warning">{{$message}}</div>
-              @enderror
+              <div id="error" class="text-warning"></div>
             </div>
             
             <div class="form2 form-group col bg-secondary mt-4">
@@ -73,7 +71,7 @@
               @enderror
             </div>
             <div class="text-center">
-              <button class="btn bg-secondary text-white" type="submit" name="submit">Continue</button>
+              <button class="btn bg-secondary text-white" type="submit" name="submit";">Continue</button>
             </div>
           </form>
         </div>
@@ -110,5 +108,13 @@
           </div>
           <br/>
         </footer>
+        <script>
+          function validate(){
+            if(document.getElementById('sel1').value==""){
+              document.getElementById('error').innerHTML = 'Please select atleast one test';
+              return false;
+            }
+          }
+        </script>
     </body>
   </html>
