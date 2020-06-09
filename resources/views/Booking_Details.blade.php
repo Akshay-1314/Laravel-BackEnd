@@ -182,6 +182,11 @@
         });
         </script>
       }
+      @else{
+        <script>
+          location.replace('booking_page');
+        </script>
+      }
       @endif
     </body>
     </html>
