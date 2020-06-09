@@ -93,7 +93,7 @@
           arrow: true
         });
         document.getElementById('tooltip').onclick=function(){
-          alert('Are you sure you want to delete?');
+          return(confirm('Are you sure you want to delete?'));
         }
       </script>
       </body>
