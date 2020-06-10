@@ -17,12 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::view('/','Landing_Page');
 Route::view('booking_page','New_Booking_Page');
 Route::view('booking_details','Booking_Details');
-Route::get('booking_list','UserController1@show_data');
+
+Route::get('booking_page',function(){
+    return(view('New_Booking_Page'));
+});  
 
 Route::post('submit','UserController1@get_booking');
 Route::post('submit1','UserController1@get_patientdetails');
+Route::post('booking_list','UserController1@admin_check');
 
 Route::get('delete/{id}','UserController1@delete');
 Auth::routes();
 
+Route::view('admin','login');
 Route::view('/home','Landing_Page');
