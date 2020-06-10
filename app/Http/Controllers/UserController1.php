@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File; 
 use Mail;
+use Crypt;
 
 use App\diagnosis;
 use App\booking;
+use App\admin;
 
 class UserController1 extends Controller
 {
@@ -38,7 +40,6 @@ class UserController1 extends Controller
             $new->save();
             
             return redirect('booking_details')->with('message','Success!');
-            
         }
     }
     public function get_patientdetails(Request $re){
@@ -81,15 +82,6 @@ class UserController1 extends Controller
             return redirect('home')->with('message','Success!');
         }
     }
-    
-
-    public function show_data(){
-
-        //$data['data'] = DB::select("select * from diagnosis,bookings where diagnosis.tl_id = bookings.user_id");
-        $data = booking::all();
-        return view('Booking_List',compact('data'));
-        
-    }
 
     public function delete($id){
         $user = diagnosis::select('doctor_prescription')->where('tl_id',$id);
@@ -98,5 +90,25 @@ class UserController1 extends Controller
         diagnosis::where('tl_id',$id)->delete();
         booking::where('user_id',$id)->delete();
         return redirect('booking_list')->with('message','Deleted!');
+    }
+
+    public function admin_check(Request $req){
+            $details = DB::select("select * from admin");
+            $var = false;
+            foreach($details as $value){
+                if($value->username == $req->username and Crypt::decrypt($value->password) == $req->pwd){
+                    $var = true;
+                    break;
+                }
+            }
+            if($var){
+                //$data['data'] = DB::select("select * from diagnosis,bookings where diagnosis.tl_id = bookings.user_id");
+                $data = booking::all();
+                return view('Booking_List',compact('data'));
+            }
+            else{
+                return redirect()->back()->with('message','Error!');
+            }
+            
     }
 }
