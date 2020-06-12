@@ -43,8 +43,8 @@ class UserController1 extends Controller
         }
     }
     public function get_patientdetails(Request $re){
-        //get tl_id from diagnosis
-        $diag = diagnosis::take(1)->orderBy('tl_id','DESC')->get();
+        //get id from diagnosis
+        $diag = diagnosis::take(1)->orderBy('id','DESC')->get();
         if($re->validate([
             "name"=>"required|min:3",
             "age"=>"required",
@@ -61,7 +61,7 @@ class UserController1 extends Controller
             'time_slot.required'=>'Please pick a time-slot']))
         {
             $booking = new booking;
-            $booking->user_id = $diag[0]['tl_id'];
+            $booking->user_id = $diag[0]['id'];
             $booking->user_name = $re->name;
             $booking->age = $re->age;
             $booking->gender = $re->gender;
@@ -73,23 +73,18 @@ class UserController1 extends Controller
             $booking->address = $re->address;
             $booking->pin_code = $re->pin_code;
             $booking->save();
-            
-
-            Mail::send('mail',['name'=>$re->name],function($message) use($re){
-                $message->to($re['email'])->subject('Booking Confirmed');
-                $message->from('akshaykumar200042@gmail.com','Practo');
-            });
             return redirect('home')->with('message','Success!');
         }
     }
 
     public function delete($id){
-        $user = diagnosis::select('doctor_prescription')->where('tl_id',$id);
+        $user = diagnosis::select('doctor_prescription')->where('id',$id);
         $image = $user->first()->doctor_prescription;
         unlink('upload/'.$image);
-        diagnosis::where('tl_id',$id)->delete();
+        diagnosis::where('id',$id)->delete();
         booking::where('user_id',$id)->delete();
-        return redirect('booking_list')->with('message','Deleted!');
+        $data = booking::all();
+        return view('Booking_List',compact('data'),['message'=>'Delete!']);
     }
 
     public function admin_check(Request $req){
@@ -102,13 +97,18 @@ class UserController1 extends Controller
                 }
             }
             if($var){
-                //$data['data'] = DB::select("select * from diagnosis,bookings where diagnosis.tl_id = bookings.user_id");
+                //$data['data'] = DB::select("select * from diagnosis,bookings where diagnosis.id = bookings.user_id");
                 $data = booking::all();
                 return view('Booking_List',compact('data'));
             }
             else{
                 return redirect()->back()->with('message','Error!');
             }
-            
+    }
+    public function admin_add(){
+        $new = new admin;
+        $new->username = 'akshaykumar200042@gmail.com';
+        $new->password = Crypt::encrypt('mentorminds_practo');
+        $new->save();
     }
 }
