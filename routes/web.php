@@ -31,3 +31,4 @@ Auth::routes();
 
 Route::view('admin','login');
 Route::view('/home','Landing_Page');
+Route::get('/add_admin','UserController1@admin_add');
