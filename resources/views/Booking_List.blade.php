@@ -14,45 +14,7 @@
       <link rel = "icon" href =  
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
-      <style>
-          body{
-            background-color:#161748;
-          }
-          #logo {
-            position:relative;
-                  left:20px;
-                  width:100px;
-          }
-          th:hover{
-                  position:relative;
-            top:10px;
-            left:10px;
-            background-color:#dfcdff;
-            border-radius:0px;
-            transition:0s linear;
-          }
-          td{
-                  opacity:0.8
-          }
-          td:hover{
-                  position:relative;
-            top:10px;
-                  left:10px;
-                  opacity:1;
-            border-radius:0px;
-            transition:0s linear;
-          }
-          td{
-                  background-color: #ffe0da;
-          }
-          #link,#link:hover{
-            text-decoration:none;
-            color:#14a4e9;;
-          }
-          #delete{
-            color:black;
-          }
-      </style>
+      <link rel="stylesheet" type="text/css" href="{{asset('css/style3.css')}}">
     </head>
     <body>
       <header class="bg-dark h-20 container-fluid">
