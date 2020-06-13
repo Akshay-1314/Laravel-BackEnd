@@ -14,12 +14,50 @@
       <link rel = "icon" href =  
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
-      <link rel="stylesheet" href="{{asset('css/style3.css')}}">
+      <style>
+          body{
+            background-color:#161748;
+          }
+          #logo {
+            position:relative;
+                  left:20px;
+                  width:100px;
+          }
+          th:hover{
+                  position:relative;
+            top:10px;
+            left:10px;
+            background-color:#dfcdff;
+            border-radius:0px;
+            transition:0s linear;
+          }
+          td{
+                  opacity:0.8
+          }
+          td:hover{
+                  position:relative;
+            top:10px;
+                  left:10px;
+                  opacity:1;
+            border-radius:0px;
+            transition:0s linear;
+          }
+          td{
+                  background-color: #ffe0da;
+          }
+          #link,#link:hover{
+            text-decoration:none;
+            color:#14a4e9;;
+          }
+          #delete{
+            color:black;
+          }
+      </style>
     </head>
     <body>
       <header class="bg-dark h-20 container-fluid">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-          <a class="navbar-brand" href="home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
+          <a class="navbar-brand" href="../home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -27,22 +65,32 @@
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav text-center ml-auto">
+            @if($message ?? '')
+            {
+              <li class="nav-item">
+                <a class="nav-link" href="../home">Home</a>
+              </li>
+            }
+            @else{
               <li class="nav-item">
                 <a class="nav-link" href="home">Home</a>
               </li>
+            }
+            @endif
             </ul>
           </div>
         </nav>
       </header>
       <div class="container-fluid">
-      @if(session('message')){
+      @if($message ?? ''){
         <div class="alert alert-success text-center" role="alert">
           Record Deleted Successfully
         </div>
       }
       @endif
         <h1 class="text-center text-white mt-5 bg-secondary">List of Bookings</h1>
-        <table class="table table-bordered bg-warning">
+        <div class="text-center">
+        <table class="table table-responsive-md table-bordered bg-warning">
           <thead class="text-center">
             <tr class="display-5">
               <th>Name</th>
@@ -67,12 +115,13 @@
               <td>{{$value->email}}</td>
               <td>{{$value->date}}</td>
               <td>{{$value->time_slot}}</td>
-              <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" id="tooltip" data-tippy-content="Delete"></i></a></td>
+              <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" data-tippy-content="Delete"></i></a></td>
             </tr>
-            }
+          }
           @endforeach
             </tbody>
         </table>
+        </div>
       </div>
       <div class="container-fluid">
         <div class="row">
@@ -93,9 +142,6 @@
           animation: 'scale',
           arrow: true
         });
-        document.getElementById('tooltip').onclick=function(){
-          return(confirm('Are you sure you want to delete?'));
-        }
       </script>
       </body>
     </html>
