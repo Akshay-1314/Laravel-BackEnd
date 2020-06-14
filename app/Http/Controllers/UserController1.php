@@ -19,6 +19,8 @@ class UserController1 extends Controller
             "file"=>"required|image|mimes:jpeg,png,jpg,gif|max:2048",
             "sellist2"=>"required"],
             ['file.required'=>"Please choose a file",
+            'file.max'=>"The image size shoudn't be more than 2MB",
+            'file.mimes'=>"The file must be an image", 
             'sellist2.required'=>"Please select a lab"]))
         {
             $new = new diagnosis;
@@ -39,6 +41,7 @@ class UserController1 extends Controller
             $new->doctor_prescription = $filename;
             $new->save();
             
+            $req->session()->put('booking',$req->input());
             return redirect('booking_details')->with('message','Success!');
         }
     }
@@ -73,10 +76,14 @@ class UserController1 extends Controller
             $booking->address = $re->address;
             $booking->pin_code = $re->pin_code;
             $booking->save();
+            
             return redirect('home')->with('message','Success!');
         }
     }
-
+    public function showdata(){
+        $data = booking::all();
+        return view('Booking_List',compact('data'));
+    }
     public function delete($id){
         $user = diagnosis::select('doctor_prescription')->where('id',$id);
         $image = $user->first()->doctor_prescription;
@@ -84,7 +91,7 @@ class UserController1 extends Controller
         diagnosis::where('id',$id)->delete();
         booking::where('user_id',$id)->delete();
         $data = booking::all();
-        return view('Booking_List',compact('data'),['message'=>'Delete!']);
+        return redirect('booking_list')->with('message','Delete!');
     }
 
     public function admin_check(Request $req){
@@ -97,9 +104,9 @@ class UserController1 extends Controller
                 }
             }
             if($var){
+                $req->session()->put('details',$req->input());
                 //$data['data'] = DB::select("select * from diagnosis,bookings where diagnosis.id = bookings.user_id");
-                $data = booking::all();
-                return view('Booking_List',compact('data'));
+                return redirect('/')->with('login','Loggedin');
             }
             else{
                 return redirect()->back()->with('message','Error!');
