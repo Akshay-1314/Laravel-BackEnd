@@ -14,7 +14,45 @@
       <link rel = "icon" href =  
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
-      <link rel="stylesheet" type="text/css" href="{{asset('css/style3.css')}}">
+      <style>
+          body{
+            background-color:#161748;
+          }
+          #logo {
+            position:relative;
+                  left:20px;
+                  width:100px;
+          }
+          th:hover{
+                  position:relative;
+            top:10px;
+            left:10px;
+            background-color:#dfcdff;
+            border-radius:0px;
+            transition:0s linear;
+          }
+          td{
+                  opacity:0.8
+          }
+          td:hover{
+                  position:relative;
+            top:10px;
+                  left:10px;
+                  opacity:1;
+            border-radius:0px;
+            transition:0s linear;
+          }
+          td{
+                  background-color: #ffe0da;
+          }
+          #link,#link:hover{
+            text-decoration:none;
+            color:#14a4e9;;
+          }
+          #delete{
+            color:black;
+          }
+      </style>
     </head>
     <body>
       <header class="bg-dark h-20 container-fluid">
@@ -27,24 +65,15 @@
           <!-- Navbar links -->
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav text-center ml-auto">
-            @if($message ?? '')
-            {
-              <li class="nav-item">
-                <a class="nav-link" href="../home">Home</a>
-              </li>
-            }
-            @else{
-              <li class="nav-item">
-                <a class="nav-link" href="home">Home</a>
-              </li>
-            }
-            @endif
+            <li class="nav-item">
+              <a class="nav-link" href="home">Home</a>
+            </li>
             </ul>
           </div>
         </nav>
       </header>
       <div class="container-fluid">
-      @if($message ?? ''){
+      @if(session('message')){
         <div class="alert alert-success text-center" role="alert">
           Record Deleted Successfully
         </div>
@@ -77,7 +106,7 @@
               <td>{{$value->email}}</td>
               <td>{{$value->date}}</td>
               <td>{{$value->time_slot}}</td>
-              <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" data-tippy-content="Delete"></i></a></td>
+              <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" id="tooltip" data-tippy-content="Delete"></i></a></td>
             </tr>
           }
           @endforeach
