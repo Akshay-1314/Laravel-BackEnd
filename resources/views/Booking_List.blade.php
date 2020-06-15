@@ -16,7 +16,7 @@
         type="image/x-icon">
       <style>
           body{
-            background-color:#161748;
+                  background-color:#161748;
           }
           #logo {
             position:relative;
@@ -25,32 +25,32 @@
           }
           th:hover{
                   position:relative;
-            top:10px;
-            left:10px;
-            background-color:#dfcdff;
-            border-radius:0px;
-            transition:0s linear;
+                  top:10px;
+                  left:10px;
+                  background-color:#dfcdff;
+                  border-radius:0px;
+                  transition:0s linear;
           }
           td{
                   opacity:0.8
           }
           td:hover{
                   position:relative;
-            top:10px;
+                  top:10px;
                   left:10px;
                   opacity:1;
-            border-radius:0px;
-            transition:0s linear;
+                  border-radius:0px;
+                  transition:0s linear;
           }
           td{
                   background-color: #ffe0da;
           }
           #link,#link:hover{
-            text-decoration:none;
-            color:#14a4e9;;
+                  text-decoration:none;
+                  color:#14a4e9;;
           }
           #delete{
-            color:black;
+                  color:black;
           }
       </style>
     </head>
@@ -74,7 +74,8 @@
       </header>
       <div class="container-fluid">
       @if(session('message')){
-        <div class="alert alert-success text-center" role="alert">
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
           Record Deleted Successfully
         </div>
       }
