@@ -37,8 +37,6 @@
           }
           #diagnostic a{
             text-decoration:none;
-            color:#0000ff;
-            background-color:#ffff56;
           }
           footer div{
             text-align:justify;
@@ -101,13 +99,14 @@
         </nav>
       </header>
       @if(session('alogged')){
-        <div class="alert alert-success text-center" role="alert">
+        <div class="alert alert-info alert-dismissible fade show text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
           Already logged in as admin
         </div>
       }
       @endif
       <div class="container-fluid" id="diagnostic">
-        <a href="booking_page">
+        <a href="booking_page" class="btn btn-secondary btn-outline-dark text-white">
         BOOK A DIAGNOSTIC TEST</a>
       </div>
       <!--<section class="mt-5">
