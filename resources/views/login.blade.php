@@ -34,7 +34,7 @@
         swal({
             title: "Login Failed!",
             text: "Invalid Username or Password",
-            icon: "error",
+            icon: "warning",
         });
         </script>
       }
