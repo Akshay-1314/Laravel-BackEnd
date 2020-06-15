@@ -13,7 +13,28 @@
       <link rel = "icon" href =  
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
-      <link rel="stylesheet" href="{{asset('css/style2.css')}}">
+      <style>
+          body{
+            background-color:#161748;
+          }
+          #logo {
+            position:relative;
+                  left:20px;
+                  width:100px;
+          }
+          #top{
+            margin-top:100px;
+          }
+          .size{
+            width:100px;
+          }
+          #img3,#img4{
+            width:50px;
+          }
+          #footer{
+          background: #f6f6f9;
+          }
+      </style>
     </head>
     <body>
       <header class="bg-dark h-20 container-fluid">
@@ -52,14 +73,14 @@
               @csrf
                 <div class="form-group mt-3">
                   <label for="name" class="text-white">Name</label>
-                  <input type="text" class="form-control" name="name" id="name">
+                  <input type="text" class="form-control" placeholder="Enter Name" name="name" id="name">
                   @error('name')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
                 </div>
                 <div class="form-group mt-3">
                   <label for="age" class="text-white">Age(in Years)</label>
-                  <input type="number" class="form-control" name="age" id="age" min="1" max="120">
+                  <input type="number" class="form-control" placeholder="Enter Age" name="age" id="age" min="1" max="120">
                   @error('age')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
@@ -85,14 +106,14 @@
                 </div>
                 <div class="form-group mt-3">
                   <label for="mobile" class="text-white">Mobile</label>
-                  <input type="tel" class="form-control" name="mobile" id="mobile">
+                  <input type="tel" class="form-control" placeholder="Enter Mobile Number" name="mobile" id="mobile">
                   @error('mobile')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
                 </div>
                 <div class="form-group mt-3">
                   <label for="email" class="text-white">Email</label>
-                  <input type="email" class="form-control" name="email" id="email">
+                  <input type="email" class="form-control" placeholder="Enter Email" name="email" id="email">
                   @error('email')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
@@ -130,14 +151,14 @@
                 </div>
                 <div class="form-group mt-3">
                   <label for="address" class="text-white">Address</label>
-                  <textarea class="form-control" id="address" name="address" rows="4"></textarea>
+                  <textarea class="form-control" id="address" placeholder="Enter Address" name="address" rows="4"></textarea>
                   @error('address')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
                 </div>
                 <div class="form-group mt-4">
                   <label for="pin-code" class="text-white">Pin-code</label>
-                  <input class="form-control" id="pin-code" name="pin_code">
+                  <input class="form-control" id="pin-code" placeholder="Enter Pin-code" name="pin_code">
                   @error('pin_code')
                   <div class="text-warning">{{$message}}</div>
                   @enderror
@@ -180,11 +201,6 @@
             text: "Data saved successfully!",
             icon: "success",
         });
-        </script>
-      }
-      @else{
-        <script>
-          location.replace('booking_page');
         </script>
       }
       @endif
