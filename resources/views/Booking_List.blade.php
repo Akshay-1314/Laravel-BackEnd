@@ -69,7 +69,7 @@
               <a class="nav-link" href="home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout">logout</a>
+              <a class="nav-link" href="logout">Logout</a>
             </li>
             </ul>
           </div>
@@ -100,7 +100,7 @@
             </tr>
           </thead>
           <tbody class="text-center">
-          @foreach($data as $value){
+          @foreach($data as $value)
             <tr> 
               <td>{{$value->user_name}}
               <td>{{$value->diagnosis->lab_name}}</td>
@@ -112,9 +112,8 @@
               <td>{{$value->time_slot}}</td>
               <td><a href="delete/{{$value->user_id}}"><i class="fas fa-trash-alt" id="tooltip" data-tippy-content="Delete"></i></a></td>
             </tr>
-          }
           @endforeach
-            </tbody>
+          </tbody>
         </table>
         </div>
       </div>
