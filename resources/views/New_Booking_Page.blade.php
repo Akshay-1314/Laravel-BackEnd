@@ -14,7 +14,7 @@
         type="image/x-icon">
       <style>
             body{
-              background-color:#161748;
+              background-image: linear-gradient(27deg, #fcf2d8 50%, #f6f8e8 50%);
             }
             #logo {
               position:relative;
@@ -30,10 +30,67 @@
             #footer{
               background: #f6f6f9;
             }
+            .sample1{
+            border-width: 3px;
+            border-style: solid;
+            border-image: 
+              linear-gradient(
+                to bottom, 
+                red, 
+                rgba(0, 0, 0, 0)
+              ) 1 100%;
+          }
+          
+            .sample2:hover{
+              box-shadow: 0 0 10px #2196f3,0 0 40px #2196f3,0 0 80px #2196f3;
+            }
+            #progressbar{
+              position:fixed;
+              top:0;
+              right:0;
+              width:5px;
+              height:100%;
+              border-radius: 10px;
+              z-index:1;
+              background: linear-gradient(to top,#fcb045,#fd1d1d,#834ab4);
+          }
+          #loading{
+              position: fixed;
+              width: 100%;
+              height: 100vh;
+              background:black url('https://media.giphy.com/media/WiIuC6fAOoXD2/giphy.gif') no-repeat center center;
+              background-size:200px 200px;	
+              z-index: 99999;
+            }
+            #load{
+              position:fixed;
+              top:48%;
+              right:48%;
+            }
+            @media only screen and (max-width: 600px) {
+            #load{
+              position:fixed;
+              top:52%;
+              right:43%;
+            }
+          }
+          #f1,#f2{
+            border:1px solid black;
+            border-radius:5px;
+            background: #F1F2B5;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #135058, #F1F2B5);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #135058, #F1F2B5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            -moz-box-shadow:    3px 3px 5px 6px #ccc;
+            -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+            box-shadow:         3px 3px 5px 6px #ccc;
+          }
       </style>
     </head>
-    <body>
-      <header class="bg-dark h-20 container-fluid">
+    <body onload="myFunction()">
+    <div id="loading" class="text-center"><span class="text-white" id="load">Loading...</span></div>
+    
+    
+      <header class="bg-dark container-fluid">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
           <a class="navbar-brand" href="home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -56,12 +113,12 @@
           Please click on continue to proceed further
       </div>
       @endif
-      
-      <section class="container-fluid bg-warning">
-        <div>
+      <div id="progressbar"></div>
+      <section class="container-fluid">
+          <div id="f1" class="mt-4">
           <form action="submit6" method="POST">
           @csrf
-            <div class="form3 form-group bg-secondary text-white mt-4">
+            <div class="form3 form-group bg-dark text-white mt-4 sample1">
                   <label for="sel2">Select a Lab</label>
                   <select class="form-control" id="sel2" name="sellist2">
                   <option value="" selected>None</option>
@@ -75,12 +132,14 @@
                   @enderror
             </div>
             <div class="text-center">
-              <button class="btn bg-secondary text-white" type="submit">Continue</button>
+              <button class="btn btn-outline-danger bg-dark text-white sample2" type="submit">Continue</button>
             </div>
           </form>
+          </div>
+          <div id=f2 class="mt-5">
           <form action="submit" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
             @csrf
-            <div class="form-group bg-secondary text-white mt-4">
+            <div class="form-group bg-dark text-white mt-4 sample1">
               <label for="sel1">Select a Test/s (hold ctrl to select more than one):</label>
               <select class="form-control" id="sel1" name="sellist1[]" size="5" multiple>
                 @if(session('check'))
@@ -98,19 +157,19 @@
               <div id="error" class="text-warning"></div>
             </div>
             
-            <div class="form2 form-group col bg-secondary mt-4">
+            <div class="form2 form-group col bg-dark mt-4 sample1">
               <label for="file1" class="text-white">Upload a Prescription</label>
-              <input type="file" class="form-control-file border" id="file1" name="file" value="{{old('file')}}">
+              <input type="file" class="form-control-file border text-white" id="file1" name="file" value="{{old('file')}}">
               @error('file')
               <div class="text-warning">{{$message}}</div>
               @enderror
             </div>
             
             <div class="text-center">
-              <button class="btn bg-secondary text-white" type="submit">Submit</button>
+              <button class="btn btn-outline-danger bg-dark text-white sample2" type="submit">Submit</button>
             </div>
           </form>
-        </div>
+          </div>
       </section>
         <footer id="footer" class="mt-4">
           <br/>
@@ -151,6 +210,17 @@
               return false;
             }
           }
+          $(window).scroll(function(){
+          var scroll =$(window).scrollTop(),
+          dh = $(document).height(),
+          wh = $(window).height();
+          scrollPercent = (scroll / (dh-wh))*100;
+          $('#progressbar').css('height', scrollPercent + '%');
+        })
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+          preloader.style.display = 'none';
+        };
         </script>
     </body>
   </html>
