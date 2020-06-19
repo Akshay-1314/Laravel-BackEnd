@@ -15,9 +15,6 @@
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
       <style>
-          body{
-                  background-color:#161748;
-          }
           #logo {
             position:relative;
                   left:20px;
@@ -52,9 +49,47 @@
           #delete{
                   color:black;
           }
+          table.table-bordered{
+            border-width: 3px;
+            border-style: solid;
+            }
+          table.table-bordered > thead > tr > th{
+            border-width: 3px;
+                      border-style: solid;
+          }
+          table.table-bordered > tbody > tr > td{
+            border-width: 3px;
+                      border-style: solid;
+          }
+          #loading{
+              position: fixed;
+              width: 100%;
+              height: 100vh;
+              background:black url('https://media.giphy.com/media/WiIuC6fAOoXD2/giphy.gif') no-repeat center center;
+              background-size:200px 200px;	
+              z-index: 99999;
+            }
+            #load{
+              position:fixed;
+              top:48%;
+              right:48%;
+            }
+            @media only screen and (max-width: 600px) {
+            #load{
+              position:fixed;
+              top:52%;
+              right:43%;
+            }
+          }
+          table{
+            box-shadow: 10px 10px 5px grey;
+            background: #777;
+            border-radius: 100px/10px; 
+          }
       </style>
     </head>
-    <body>
+    <body onload="myFunction()">
+    <div id="loading" class="text-center"><span class="text-white" id="load">Loading...</span></div>
       <header class="bg-dark h-20 container-fluid">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
           <a class="navbar-brand" href="../home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
@@ -76,14 +111,14 @@
         </nav>
       </header>
       <div class="container-fluid">
-      @if(session('message')){
+      @if(session('message'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
           Record Deleted Successfully
         </div>
-      }
+      
       @endif
-        <h1 class="text-center text-white mt-5 bg-secondary">List of Bookings</h1>
+        <h1 class="text-center text-white mt-5 bg-dark">List of Bookings</h1>
         <div class="text-center">
         <table class="table table-responsive-md table-bordered bg-warning">
           <thead class="text-center">
@@ -117,7 +152,7 @@
         </table>
         </div>
       </div>
-      <div class="container-fluid">
+      <div class="container-fluid mt-5 bg-dark">
         <div class="row">
           <div class="col img-fluid text-center mt-5">
             <img src="https://www.practo.com/tests/public/images/white_practo_logo.svg?1491294044182" alt="Practo">
@@ -128,14 +163,19 @@
             Copyright © 2017, Practo. All rights reserved.
           </div>
         </div>
+        <br/>
+      <br/>
       </div>
-      <br/>
-      <br/>
+      
       <script>
         tippy('#tooltip',{
           animation: 'scale',
           arrow: true
         });
+        var preloader = document.getElementById("loading");
+        function myFunction(){
+          preloader.style.display = 'none';
+        };
       </script>
       </body>
     </html>
