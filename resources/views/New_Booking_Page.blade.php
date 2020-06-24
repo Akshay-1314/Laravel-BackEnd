@@ -13,8 +13,8 @@
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
       <style>
-            body{
-              background-image: linear-gradient(27deg, #fcf2d8 50%, #f6f8e8 50%);
+            :root {
+              --mainColor: #ff9800;
             }
             #logo {
               position:relative;
@@ -73,16 +73,25 @@
               top:52%;
               right:43%;
             }
+            #ctrl{
+              display:none;
+            }
           }
           #f1,#f2{
             border:1px solid black;
             border-radius:5px;
-            background: #F1F2B5;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #135058, #F1F2B5);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #135058, #F1F2B5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: #BA8B02;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #181818, #BA8B02);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             -moz-box-shadow:    3px 3px 5px 6px #ccc;
             -webkit-box-shadow: 3px 3px 5px 6px #ccc;
             box-shadow:         3px 3px 5px 6px #ccc;
+          }
+          .s:hover,
+          .s:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--mainColor);
+            transform: translateY(-0.25em);
+            background: white;
           }
       </style>
     </head>
@@ -90,8 +99,8 @@
     <div id="loading" class="text-center"><span class="text-white" id="load">Loading...</span></div>
     
     
-      <header class="bg-dark container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <header>
+        <nav class="navbar navbar-expand-md navbar-light" style="background:rgb(254, 241, 224);">
           <a class="navbar-brand" href="home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -101,7 +110,7 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav text-center ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="home">Home</a>
+                <a class="nav-link text-dark s" href="home">Home</a>
               </li>
             </ul>
           </div>
@@ -140,7 +149,7 @@
           <form action="submit" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
             @csrf
             <div class="form-group bg-dark text-white mt-4 sample1">
-              <label for="sel1">Select a Test/s (hold ctrl to select more than one):</label>
+              <label for="sel1">Select a Test/s <span id="ctrl">(hold ctrl to select more than one):</span></label>
               <select class="form-control" id="sel1" name="sellist1[]" size="5" multiple>
                 @if(session('check'))
                   @foreach(Session::get('check') as $value)
