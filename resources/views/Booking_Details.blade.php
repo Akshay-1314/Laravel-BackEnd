@@ -13,10 +13,10 @@
       <link rel = "icon" href =  
         "https://pbs.twimg.com/profile_images/849341342224351238/cuaVqp5x_400x400.jpg"
         type="image/x-icon">
-      <style>
-          body{
-            background-image: linear-gradient(27deg, #fcf2d8 50%, #f6f8e8 50%);
-          }
+      <style>}
+          :root {
+              --mainColor: #ff9800;
+            }
           #logo {
             position:relative;
                   left:20px;
@@ -80,20 +80,25 @@
           .f1{
             border:1px solid black;
             border-radius:5px;
-            background: #F1F2B5;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to right, #135058, #F1F2B5);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to right, #135058, #F1F2B5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+            background: #BA8B02;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #181818, #BA8B02);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             -moz-box-shadow:    3px 3px 5px 6px #ccc;
             -webkit-box-shadow: 3px 3px 5px 6px #ccc;
             box-shadow:         3px 3px 5px 6px #ccc;
+          }
+          .s:hover,
+          .s:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--mainColor);
+            transform: translateY(-0.25em);
+            background: white;
           }
       </style>
     </head>
     <body onload="myFunction()">
     <div id="loading" class="text-center"><span class="text-white" id="load">Loading...</span></div>
-      <header class="bg-dark container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <header>
+        <nav class="navbar navbar-expand-md navbar-light" style="background:rgb(254, 241, 224);">
           <!-- Brand -->
           <a class="navbar-brand" href="home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
         
@@ -106,10 +111,10 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav text-center ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="home">Home</a>
+                <a class="nav-link text-dark s" href="home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="booking_page">Back</a>
+                <a class="nav-link text-dark s" href="booking_page">Back</a>
               </li>
             </ul>
           </div>
