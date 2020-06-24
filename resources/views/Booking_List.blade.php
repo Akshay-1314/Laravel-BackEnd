@@ -20,6 +20,9 @@
                   left:20px;
                   width:100px;
           }
+          :root {
+              --mainColor: #ff9800;
+            }
           th:hover{
                   position:relative;
                   top:10px;
@@ -86,12 +89,18 @@
             background: #777;
             border-radius: 100px/10px; 
           }
+          .s:hover,
+          .s:focus {
+            box-shadow: 0 0.5em 0.5em -0.4em var(--mainColor);
+            transform: translateY(-0.25em);
+            background: white;
+          }
       </style>
     </head>
     <body onload="myFunction()">
     <div id="loading" class="text-center"><span class="text-white" id="load">Loading...</span></div>
-      <header class="bg-dark h-20 container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <header>
+        <nav class="navbar navbar-expand-md navbar-light" style="background:rgb(254, 241, 224);">
           <a class="navbar-brand" href="../home"><img class="img-fluid" id="logo" src="https://i2.wp.com/www.cosmoderma.healios.co.in/wp-content/uploads/2019/04/practo.png" alt="practo logo"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -101,10 +110,10 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav text-center ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="home">Home</a>
+              <a class="nav-link text-dark s" href="home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="logout">Logout</a>
+              <a class="nav-link text-dark s" href="logout">Logout</a>
             </li>
             </ul>
           </div>
